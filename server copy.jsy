@@ -1,0 +1,117 @@
+const express = require('express');
+const http = require('http');
+const { Server } = require("socket.io");
+
+const app = express();
+const server = http.createServer(app);
+
+// Configuração do CORS
+const io = new Server(server, {
+    cors: {
+        origin: "*", // Permitir todas as origens
+        methods: ["GET", "POST"] // Métodos HTTP permitidos
+    }
+});
+
+app.use(express.json());
+
+app.use(express.static('public'));
+
+// Define uma rota POST
+app.post('/enviar-json', (req, res) => {
+    console.log('Dados recebidos:', req.body); // Exibe os dados recebidos no console
+    const idWeb = req.body.Data ? req.body.Data.idWeb : null;
+    io.emit('dados-json', req.body);
+
+    // Responde com um JSON
+    res.json({ mensagem: "aaDados recebidos com sucesso!", seusDados: req.body });
+});
+
+
+
+app.post('/atualizar_aluno', (req, res) => {
+    console.log('Dados recebidos em /enviar-outro-json:', req.body); // Exibe os dados recebidos no console
+    io.emit('atualizar_aluno', req.body);
+
+    // Responde com um JSON
+    res.json({ mensagem: "Dados recebidos com sucesso no outro canal!", seusDados: req.body });
+});
+
+
+io.on('connection', (socket) => {
+    console.log('Novo usuário conectado');
+
+    socket.on('chat message', (msg) => {
+        console.log('Mensagem recebida:', msg); 
+// Configuração do CORS
+const io = new Server(server, {
+    cors: {
+        origin: "*", // Permitir todas as origens
+        methods: ["GET", "POST"] // Métodos HTTP permitidos
+    }
+});
+
+app.use(express.json());
+
+app.use(express.static('public'));
+
+// Define uma rota POST
+app.post('/enviar-json', (req, res) => {
+    console.log('Dados recebidos:', req.body); // Exibe os dados recebidos no console
+
+    io.emit('dados-json', req.body);
+
+    // Responde com um JSON
+    res.json({ mensagem: "aaaaDados recebidos com sucesso!", seusDados: req.body });
+});
+
+
+
+
+
+
+io.on('connection', (socket) => {
+    console.log('Novo usuário conectado');
+
+    socket.on('chat message', (msg) => {
+        console.log('Mensagem recebida:', msg);
+        io.emit('chat message', msg);
+    });
+
+    socket.on('disconnect', () => {
+        console.log('Usuário desconectado');
+    });
+});
+
+
+server.listen(PORT, () => console.log(`Servidor rodando na porta ${PORT}`));
+
+
+  io.on('connection', (socket) => {
+    console.log('Novo usuário conectado');
+
+    socket.on('chat message', (msg) => {
+        console.log('Mensagem recebida:', msg);
+        io.emit('chat message', msg);
+    });
+
+    socket.on('disconnect', () => {
+        console.log('Usuário desconectado');
+    });
+});
+
+const PORT = process.env.PORT || 3000;
+server.listen(PORT, () => console.log(`Servidor rodando na porta ${PORT}`));
+
+
+server.listen(PORT, () => console.log(`Servidor rodando na porta ${PORT}`));
+        io.emit('chat message', msg);
+    });
+
+    socket.on('disconnect', () => {
+        console.log('Usuário desconectado');
+    });
+});
+
+const PORT = process.env.PORT || 3000;
+server.listen(PORT, () => console.log(`Servidor rodando na porta ${PORT}`));
