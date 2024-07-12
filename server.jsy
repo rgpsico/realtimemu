@@ -32,6 +32,14 @@ app.post('/atualizar_aluno', (req, res) => {
     res.json({ mensagem: "Dados recebidos com sucesso noaaa outro canal!", seusDados: req.body });
 });
 
+
+app.post('/acesso', (req, res) => {
+    console.log('Acesso', req.body); 
+    io.emit('Acesso', req.body);
+  
+    res.json({ mensagem: "Dados recebidos com sucesso noaaa outro canal!", seusDados: req.body });
+});
+
 // Configurações de conexão do Socket.IO
 io.on('connection', (socket) => {
     console.log('Novo usuário conectado');
