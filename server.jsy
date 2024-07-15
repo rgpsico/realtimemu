@@ -34,15 +34,11 @@ app.post('/atualizar_aluno', (req, res) => {
 
 
 app.post('/acesso', (req, res) => {
-    const empresa = req.body.empresaId; // Supondo que você tenha a empresa no corpo da requisição
     console.log('Acesso', req.body); 
-     console.log(`Acesso${empresa}`);
-    io.emit(`Acesso197`, req.body); // Emite para o canal específico da empresa
+    io.emit('Acesso', req.body);
   
-    res.json({ mensagem: "Dados recebidos com sucesso no outro canal!", seusDados: req.body });
+    res.json({ mensagem: "Dados recebidos com sucesso noaaa outro canal!", seusDados: req.body });
 });
-
-
 
 // Configurações de conexão do Socket.IO
 io.on('connection', (socket) => {
