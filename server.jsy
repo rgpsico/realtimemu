@@ -35,6 +35,7 @@ app.post('/atualizar_aluno', (req, res) => {
 
 app.post('/acesso', (req, res) => {
     console.log('Acesso', req.body); 
+    console.log(req.body.empresa)
     io.emit('Acesso157', req.body);
   
     res.json({ mensagem: "Dados recebidos com sucesso noaaa outro canal!", seusDados: req.body });
