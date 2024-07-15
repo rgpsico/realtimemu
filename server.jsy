@@ -38,7 +38,7 @@ app.post('/acesso', (req, res) => {
     console.log('Acesso', req.body); 
     io.emit(`Acesso${empresa}`, req.body); // Emite para o canal específico da empresa
   
-    res.json({ mensagem: "Dados recebidos com sucesso no outro canal!", seusDados: req.body });
+    res.json({ mensagem: "Dados Acesso", seusDados: req.body });
 });
 
 
