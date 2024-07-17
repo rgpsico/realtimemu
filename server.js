@@ -27,9 +27,8 @@ app.post('/enviar-json', (req, res) => {
 // Define uma rota POST para /atualizar_aluno
 app.post('/atualizar_aluno', (req, res) => {
     console.log('Dados recebidos em /atualizar_aluno:', req.body); // Exibe os dados recebidos no console
-    io.emit('atualizar_aluno', req.body);
-    io.emit('atualizar_aluno'+req.body.empresa+""+req.body.empresa, req.body);
-    
+     io.emit('atualizar_aluno'+req.body.empresa, req.body);
+
    
     res.json({ mensagem: "Dados recebidos com sucesso noaaa outro canal!", seusDados: req.body });
 });
