@@ -42,6 +42,15 @@ app.post('/acesso', (req, res) => {
     res.json({ mensagem: "Dados recebidos com sucesso noaaa outro canal!", seusDados: req.body });
 });
 
+
+app.post('/liberacao_manual', (req, res) => {
+    console.log('liberacao_manual', req.body); 
+    console.log('liberacao_manual'+req.body.empresa)
+    io.emit('liberacao_manual'+req.body.empresa, req.body);
+  
+    res.json({ mensagem: "Liberação Concluida!", seusDados: req.body });
+});
+
 // Configurações de conexão do Socket.IO
 io.on('connection', (socket) => {
     console.log('Novo usuário conectado');
