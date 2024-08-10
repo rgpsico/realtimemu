@@ -65,7 +65,7 @@ app.post('/reiniciar_aplicativo', (req, res) => {
 
 app.post('/bate_papo', (req, res) => {    
     io.emit('bate_papo'+req.body.empresa, req.body);  
-    res.json({ mensagem: "reiniciando o APP", seusDados: req.body });
+    res.json({ mensagem: "bate papo ", seusDados: req.body });
 });
 // Configurações de conexão do Socket.IO
 io.on('connection', (socket) => {
