@@ -33,7 +33,6 @@ app.post('/atualizar_aluno', (req, res) => {
     res.json({ mensagem: "Dados recebidos com sucesso noaaa outro canal!", seusDados: req.body });
 });
 
-
 app.post('/sincronizar_funcionario', (req, res) => {
     console.log('sincronizar_funcionario'+req.body.empresa, req.body); // Exibe os dados recebidos no console
      io.emit('sincronizar_funcionario'+req.body.empresa, req.body);
