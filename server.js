@@ -60,20 +60,20 @@ app.post('/liberacao_manual', (req, res) => {
 
 
 app.post('/atualizar_imagem_aluno', (req, res) => { 
-   
-    io.emit('atualizar_imagem_aluno'+req.body.empresa, req.body);
-  
+       io.emit('atualizar_imagem_aluno'+req.body.empresa, req.body);  
     res.json({ mensagem: "atualizar_imagem_aluno", seusDados: req.body });
 });
 
 
-app.post('/reiniciar_aplicativo', (req, res) => { 
-   
-    io.emit('reiniciar_aplicativo'+req.body.empresa, req.body);
-  
+app.post('/reiniciar_aplicativo', (req, res) => {    
+    io.emit('reiniciar_aplicativo'+req.body.empresa, req.body);  
     res.json({ mensagem: "reiniciando o APP", seusDados: req.body });
 });
 
+app.post('/bate_papo', (req, res) => {    
+    io.emit('bate_papo'+req.body.empresa, req.body);  
+    res.json({ mensagem: "bate papo ", seusDados: req.body });
+});
 // Configurações de conexão do Socket.IO
 io.on('connection', (socket) => {
     console.log('Novo usuário conectado');
