@@ -55,7 +55,7 @@ app.post('/liberacao_manual', (req, res) => {
     console.log('liberacao_manual'+req.body.empresa)
     io.emit('liberacao_manual'+req.body.empresa, req.body);
   
-    res.json({ mensagem: "Liberação Concluida!", seusDados: req.body });
+    res.json({ mensagem: "Liberação Concluida 1!", seusDados: req.body });
 });
 
 
