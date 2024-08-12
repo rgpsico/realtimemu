@@ -34,6 +34,14 @@ app.post('/atualizar_aluno', (req, res) => {
 });
 
 
+app.post('/sincronizar_funcionario', (req, res) => {
+    console.log('sincronizar_funcionario'+req.body.empresa, req.body); // Exibe os dados recebidos no console
+     io.emit('sincronizar_funcionario'+req.body.empresa, req.body);
+
+   
+    res.json({ mensagem: "funcinários sincronizados com sucesso!", seusDados: req.body });
+});
+
 app.post('/acesso', (req, res) => {
     console.log('Acesso', req.body); 
     console.log('Acesso'+req.body.empresa)
