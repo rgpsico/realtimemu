@@ -47,7 +47,7 @@ app.post('/atualizar_aluno_catraca', (req, res) => {
      io.emit('atualizar_aluno_catraca'+req.body.empresa, req.body);
 
    
-    res.json({ mensagem: "Dados recebidos com sucesso noaaa outro canal!", seusDados: req.body });
+    res.json({ mensagem: "Dados recebidos atualizar_aluno_catraca", seusDados: req.body });
 });
 
 app.post('/atualizar_aluno_gympass', (req, res) => {
