@@ -35,15 +35,23 @@ app.post('/atualizar_aluno', (req, res) => {
 
 
 app.post('/atualizar_data_vencimento_aluno', (req, res) => {
-    console.log('atualizar_data_vencimento_aluno so data de vencimento'+req.body.empresa, req.body); // Exibe os dados recebidos no console
+    console.log('atualizar_data_vencimento_aluno so data de vencimento'+req.body.empresa, req.body); 
      io.emit('atualizar_data_vencimento_aluno'+req.body.empresa, req.body);
 
    
     res.json({ mensagem: "Dados recebidos com sucesso noaaa outro canal!", seusDados: req.body });
 });
 
+app.post('/atualizar_aluno_catraca', (req, res) => {
+    console.log('atualizar_aluno_catraca so data de vencimento'+req.body.empresa, req.body); 
+     io.emit('atualizar_aluno_catraca'+req.body.empresa, req.body);
+
+   
+    res.json({ mensagem: "Dados recebidos com sucesso noaaa outro canal!", seusDados: req.body });
+});
+
 app.post('/atualizar_aluno_gympass', (req, res) => {
-    console.log('atualizar_aluno_gympass'+req.body.empresa, req.body); // Exibe os dados recebidos no console
+    console.log('atualizar_aluno_gympass'+req.body.empresa, req.body); 
      io.emit('atualizar_aluno_gympass'+req.body.empresa, req.body);
 
    
@@ -52,7 +60,7 @@ app.post('/atualizar_aluno_gympass', (req, res) => {
 
 
 app.post('/atualizar_aluno_totalpass', (req, res) => {
-    console.log('tualizar_aluno_totalpass'+req.body.empresa, req.body); // Exibe os dados recebidos no console
+    console.log('tualizar_aluno_totalpass'+req.body.empresa, req.body); 
      io.emit('tualizar_aluno_totalpass'+req.body.empresa, req.body);
 
    
