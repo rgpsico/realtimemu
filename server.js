@@ -30,7 +30,7 @@ app.post('/atualizar_aluno', (req, res) => {
      io.emit('atualizar_aluno'+req.body.empresa, req.body);
 
    
-    res.json({ mensagem: "Dados recebidos com sucesso noaaa outro canal!", seusDados: req.body });
+    res.json({ mensagem: "Dados recebidos com sucesso noaaa outro canal!2", seusDados: req.body });
 });
 
 
