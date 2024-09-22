@@ -1,7 +1,7 @@
 const express = require('express');
 const http = require('http');
 const { Server } = require("socket.io");
-
+const path = require('path');
 const app = express();
 const server = http.createServer(app);
 
@@ -108,6 +108,19 @@ app.post('/bate_papo', (req, res) => {
     io.emit('bate_papo'+req.body.empresa, req.body);  
     res.json({ mensagem: "bate papo ", seusDados: req.body });
 });
+
+app.post('/bate_papo', (req, res) => {    
+    io.emit('bate_papo'+req.body.empresa, req.body);  
+    res.json({ mensagem: "bate papo ", seusDados: req.body });
+});
+
+
+
+app.post('/', (req, res) => {
+    // Servir o arquivo index.html da pasta /var/www/acessomu
+    res.sendFile(path.join('/var/www/acessomu', 'index.html'));
+});
+
 // Configurações de conexão do Socket.IO
 io.on('connection', (socket) => {
     console.log('Novo usuário conectado');
