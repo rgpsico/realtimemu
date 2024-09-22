@@ -118,7 +118,7 @@ app.post('/bate_papo', (req, res) => {
 
 app.post('/', (req, res) => {
     // Servir o arquivo index.html da pasta /var/www/acessomu
-    res.sendFile(path.join('/var/www/acessomu', 'index.html'));
+    res.sendFile(path.join('/var/www/acesso', 'index.html'));
 });
 
 // Configurações de conexão do Socket.IO
