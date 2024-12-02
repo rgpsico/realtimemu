@@ -121,6 +121,17 @@ app.get('/acessoview', (req, res) => {
     res.sendFile(path.join('/var/www/acesso', 'index.html'));
 });
 
+
+
+app.post('/enviarpedidoparaentregadores', (req, res) => {
+    console.log('enviarpedidoentregadores', req.body); 
+    io.emit('enviarpedidoentregadores', req.body);
+  
+    res.json({ mensagem: "enviarpedidoentregadores!", seusDados: req.body });
+});
+
+
+
 // Configurações de conexão do Socket.IO
 io.on('connection', (socket) => {
     console.log('Novo usuário conectado');
