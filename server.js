@@ -24,6 +24,22 @@ app.post('/enviar-json', (req, res) => {
     res.json({ mensagem: "Dados recebidos com sucesso!", seusDados: req.body });
 });
 
+app.post('/enviarpedidoparaentregadores', (req, res) => {
+    console.log('enviarpedidoentregadores', req.body); 
+    io.emit('enviarpedidoentregadores', req.body);
+  
+    res.json({ mensagem: "enviarpedidoentregadores!", seusDados: req.body });
+});
+
+app.post('/receberMensagemEntregador', (req, res) => {
+    console.log('receberMensagemEntregador', req.body); 
+    io.emit('receberMensagemEntregador'+req.body.user_id, req.body);
+  
+    res.json({ mensagem: "receberMensagemEntregador!", seusDados: req.body });
+});
+
+
+
 // Define uma rota POST para /atualizar_aluno
 app.post('/atualizar_aluno', (req, res) => {
     console.log('atualizar_aluno'+req.body.empresa, req.body); // Exibe os dados recebidos no console
@@ -123,12 +139,6 @@ app.get('/acessoview', (req, res) => {
 
 
 
-app.post('/enviarpedidoparaentregadores', (req, res) => {
-    console.log('enviarpedidoentregadores', req.body); 
-    io.emit('enviarpedidoentregadores', req.body);
-  
-    res.json({ mensagem: "enviarpedidoentregadores!", seusDados: req.body });
-});
 
 
 
