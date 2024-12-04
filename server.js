@@ -31,6 +31,13 @@ app.post('/enviarpedidoparaentregadores', (req, res) => {
     res.json({ mensagem: "enviarpedidoentregadores!", seusDados: req.body });
 });
 
+app.post('/enviarmensagem', (req, res) => {
+    console.log('enviarmensagem', req.body); 
+    io.emit('enviarmensagem', req.body);
+  
+    res.json({ mensagem: "enviarmensagem!", seusDados: req.body });
+});
+
 app.post('/receberMensagemEntregador', (req, res) => {
     console.log('receberMensagemEntregador', req.body); 
     io.emit('receberMensagemEntregador'+req.body.user_id, req.body);
