@@ -1,9 +1,13 @@
 const express = require("express");
 const http = require("http");
+
 const { Server } = require("socket.io");
 const path = require("path");
 const app = express();
 const server = http.createServer(app);
+const fs = require("fs");
+
+//const server = https.createServer(options, app);
 
 // Configuração do CORS
 const io = new Server(server, {
@@ -12,6 +16,15 @@ const io = new Server(server, {
     methods: ["GET", "POST"], // Métodos HTTP permitidos
   },
 });
+
+const options = {
+  key: fs.readFileSync(
+    "/etc/letsencrypt/live/comunidadeppg.com.br/privkey.pem"
+  ),
+  cert: fs.readFileSync(
+    "/etc/letsencrypt/live/comunidadeppg.com.br/fullchain.pem"
+  ),
+};
 
 app.use(express.json());
 app.use(express.static("public"));
@@ -28,7 +41,13 @@ app.post("/enviarpedidoparaentregadores", (req, res) => {
   console.log("enviarpedidoentregadores", req.body);
   io.emit("enviarpedidoentregadores", req.body);
 
-  res.json({ mensagem: "enviarpedidoentregadores8898", seusDados: req.body });
+  res.json({ mensagem: "enviarpedidoentregadores123!", seusDados: req.body });
+});
+
+app.post("/enviarparapix", (req, res) => {
+  console.log("pixrecebido", req.body);
+  io.emit("pixrecebido", req.body);
+  res.json({ mensagem: "pixrecebido!", seusDados: req.body });
 });
 
 app.post("/enviarmensagem", (req, res) => {
@@ -171,4 +190,4 @@ io.on("connection", (socket) => {
 });
 
 const PORT = process.env.PORT || 3000;
-server.listen(PORT, () => console.log(`Servidor rodando na porta ${PORT}`));
+server.listen(PORT, () => console.log(`Servid rodando na porta ${PORT}`));
