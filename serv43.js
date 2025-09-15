@@ -64,6 +64,24 @@ app.post("/enviarmensagem", (req, res) => {
   res.json({ mensagem: "Mensagem enviada com sucesso!", seusDados: req.body });
 });
 
+// Rota para bate-papo do SaaS
+app.post("/chatmessage", (req, res) => {
+  const { conversation_id, user_id, mensagem } = req.body;
+
+  if (!conversation_id || !mensagem || !user_id) {
+    return res
+      .status(400)
+      .json({ error: "conversation_id, user_id e mensagem são obrigatórios" });
+  }
+
+  console.log("Nova mensagem do chat:", req.body);
+
+  // Emite apenas para os clientes conectados desta conversa
+  io.emit("chatmessage" + conversation_id, req.body);
+
+  res.json({ mensagem: "Mensagem enviada com sucesso!", dados: req.body });
+});
+
 io.on("connection", (socket) => {
   console.log("Novo usuário conectado");
 
