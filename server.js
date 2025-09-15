@@ -16,7 +16,7 @@ const io = new Server(server, {
 app.use(express.json());
 app.use(express.static("public"));
 
-// Define uma rota POST para /enviar-json
+// Define uma rota POST para /enviar-json teste aqui
 app.post("/enviar-json", (req, res) => {
   console.log("Dados recebidos:", req.body); // Exibe os dados recebidos no console
   io.emit("dados-json", req.body);
