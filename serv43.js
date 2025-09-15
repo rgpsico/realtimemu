@@ -66,26 +66,18 @@ app.post("/enviarmensagem", (req, res) => {
 
 // Rota para bate-papo do SaaS
 app.post("/chatmessage", (req, res) => {
-  const { conversation_id, user_id, from, mensagem } = req.body;
+  const { conversation_id, user_id, mensagem } = req.body;
 
-  if (!conversation_id || !mensagem || !from) {
+  if (!conversation_id || !mensagem || !user_id) {
     return res
       .status(400)
-      .json({ error: "conversation_id, from e mensagem são obrigatórios" });
+      .json({ error: "conversation_id, user_id e mensagem são obrigatórios" });
   }
 
   console.log("Nova mensagem do chat:", req.body);
 
-  // Emitir a mensagem para todos os clientes na sala correspondente, exceto o remetente
-  io.to(`conversation:${conversation_id}`).emit(
-    `chatmessage${conversation_id}`,
-    {
-      conversation_id,
-      user_id: user_id || null,
-      from,
-      mensagem,
-    }
-  );
+  // Emite apenas para os clientes conectados desta conversa
+  io.emit("chatmessage" + conversation_id, req.body);
 
   res.json({ mensagem: "Mensagem enviada com sucesso!", dados: req.body });
 });
