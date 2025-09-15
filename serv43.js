@@ -82,6 +82,23 @@ app.post("/chatmessage", (req, res) => {
   res.json({ mensagem: "Mensagem enviada com sucesso!", dados: req.body });
 });
 
+app.post("/enviarparaosass", (req, res) => {
+  const { conversation_id, user_id, mensagem } = req.body;
+
+  if (!conversation_id || !mensagem || !user_id) {
+    return res
+      .status(400)
+      .json({ error: "conversation_id, user_id e mensagem são obrigatórios" });
+  }
+
+  console.log("enviarmensagemparaosass:", req.body);
+
+  // Emite apenas para os clientes conectados desta conversa
+  io.emit("enviarparaosass" + conversation_id, req.body);
+
+  res.json({ mensagem: "Mensagem enviada com sucesso!", dados: req.body });
+});
+
 io.on("connection", (socket) => {
   console.log("Novo usuário conectado");
 
